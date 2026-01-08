@@ -162,7 +162,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 中文说明
 
-**UN JD Parser** 是一款专为联合国岗位描述（JD）设计的自动化解析工具。
+**UN JD Parser** 便利申请联合国岗位的同学们，管理JD
 
 - **主要功能**：自动提取岗位名称、ID、截止日期和工作地点；支持 `.docx` 和 `.pdf`；支持历史记录保存与导出；支持标记任务完成状态。
 - **技术栈**：基于 Python FastAPI 和 Tailwind CSS，通过 PyWebView 提供原生窗口体验。
