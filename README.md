@@ -102,6 +102,12 @@ pyinstaller --noconfirm --onefile --windowed --add-data "app/static;app/static" 
 ```
 The result will be in the `dist/` folder. 
 
+### 🛡️ Security Note for Windows Users
+Since this is a standalone `.exe` without a paid digital signature, Windows SmartScreen or your browser might flag it as "unsupported" or "suspicious". 
+1. **In Browser**: Choose "Keep" or "Trust" when downloading.
+2. **On Run**: Click **"More info"** and then **"Run anyway"** in the blue pop-up.
+3. This is a common behavior for open-source tools; the source code is fully available here for your review to ensure safety.
+
 ### Method 2: Run from Source (For Developers)
 
 1. **Clone the repository**:
