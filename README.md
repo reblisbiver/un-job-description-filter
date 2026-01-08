@@ -92,7 +92,7 @@ It's a simple tool assisting people who search for UN jobs. Recommend use the '.
 
 ### Method 1: Use the Executable
 
-**You can get the latest '.exe' file in the releases area.**
+You can get the latest '.exe' file in the releases area.
 
 Or
 
