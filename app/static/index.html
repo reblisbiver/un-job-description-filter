@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UN JD Filter & Parser</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .drag-over { border-color: #3b82f6; background-color: #eff6ff; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans text-gray-900">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="mb-10 text-center">
+            <h1 class="text-4xl font-extrabold text-blue-800 mb-2">UN JD Parser</h1>
+            <p class="text-gray-600">Extract key information from United Nations Job Descriptions automatically.</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 gap-8">
+            <!-- Upload Section -->
+            <div id="drop-zone" class="border-4 border-dashed border-gray-300 rounded-2xl p-12 text-center transition-all duration-300 ease-in-out cursor-pointer hover:border-blue-400 bg-white shadow-sm">
+                <i class="fas fa-file-upload text-5xl text-blue-500 mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Click or Drag & Drop JD Files Here</h3>
+                <p class="text-gray-500 mb-4">Supports .docx and .pdf files</p>
+                <input type="file" id="file-input" multiple class="hidden" accept=".pdf,.docx">
+                <button onclick="document.getElementById('file-input').click()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-md transition-colors">
+                    Select Files or Folders
+                </button>
+            </div>
+
+            <!-- Loader -->
+            <div id="loader" class="hidden text-center">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent"></div>
+                <p class="mt-2 text-blue-600 font-medium">Processing files...</p>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-section" class="hidden animate-fade-in">
+                <div class="flex flex-wrap justify-between items-center mb-4 gap-4">
+                    <h2 class="text-2xl font-bold">Extracted Information</h2>
+                    <div class="flex items-center gap-3">
+                        <label class="text-sm font-medium text-gray-600">Filter:</label>
+                        <select id="filter-status" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="all">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="finished">Finished</option>
+                        </select>
+                        <label class="text-sm font-medium text-gray-600">Sort by:</label>
+                        <select id="sort-select" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="upload_time_desc">Newest Uploads</option>
+                            <option value="upload_time_asc">Oldest Uploads</option>
+                            <option value="deadline_asc">Deadline (Soonest)</option>
+                            <option value="deadline_desc">Deadline (Latest)</option>
+                        </select>
+                        <button onclick="exportToCSV()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-sm transition-colors">
+                            <i class="fas fa-file-excel"></i> Export
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 border-b">
+                                    <th class="p-4 font-semibold text-gray-700">Filename</th>
+                                    <th class="p-4 font-semibold text-gray-700">Job Title</th>
+                                    <th class="p-4 font-semibold text-gray-700">ID</th>
+                                    <th class="p-4 font-semibold text-gray-700">Deadline</th>
+                                    <th class="p-4 font-semibold text-gray-700">Duty Station</th>
+                                    <th class="p-4 font-semibold text-gray-700 text-center">Finished</th>
+                                    <th class="p-4 font-semibold text-gray-700 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results-table-body">
+                                <!-- Data rows will go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
