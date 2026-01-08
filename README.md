@@ -94,6 +94,8 @@ It's a simple tool assisting people who search for UN jobs. Recommend use the '.
 
 You can get the latest '.exe' file in the releases area.
 
+It’s recommended to place this file in a dedicated folder and create a shortcut to it on your desktop. This is because when the file runs, it will generate a 'files' folder (for storing .pdf files) in its current location.
+
 Or
 
 To create a standalone `.exe` file:
